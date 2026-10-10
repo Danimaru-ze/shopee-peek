@@ -1,24 +1,72 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from '@tanstack/react-router';
+import { useState } from 'react';
+import { Bell, ShoppingCart, Search, ChevronDown, ChevronLeft, ChevronRight, Truck, ShieldCheck, Ticket, ShoppingBag, X, Plus, Minus, MessageCircle, Facebook, Instagram, Check, MapPin } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import banner from '@/assets/supermarket-banner.jpg';
+import p0 from '@/assets/product-0.jpg';
+import p1 from '@/assets/product-1.jpg';
+import p2 from '@/assets/product-2.jpg';
+import p3 from '@/assets/product-3.jpg';
+import p4 from '@/assets/product-4.jpg';
+import p5 from '@/assets/product-5.jpg';
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
+export const Route = createFileRoute('/')({
+  head: () => ({ meta: [
+    { title: 'Shopee Supermarket | Belanja Bahan Makanan & Kebutuhan Rumah Tangga' },
+    { name: 'description', content: 'Jelajahi kebutuhan harian, makanan, minuman, dan perlengkapan rumah tangga di pratinjau Shopee Supermarket.' },
+    { property: 'og:title', content: 'Shopee Supermarket — Kebutuhan Harian' },
+    { property: 'og:description', content: 'Pilihan produk supermarket, promo, dan kebutuhan rumah tangga dalam satu tempat.' },
+    { property: 'og:type', content: 'website' }, { name: 'twitter:card', content: 'summary_large_image' },
+  ] }), component: Supermarket,
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+const products = [
+  { id: 0, name: 'Bimoli Minyak Goreng Special Pouch 2 Liter', image: p0, price: 36900, old: 45000, sold: '10RB+', category: 'Sembako', discount: 18 },
+  { id: 1, name: 'Indomie Mi Instan Goreng Original 85g Isi 5', image: p1, price: 14900, old: 17500, sold: '10RB+', category: 'Makanan', discount: 15 },
+  { id: 2, name: 'Ultra Milk Susu UHT Full Cream 1 Liter', image: p2, price: 18900, old: 24000, sold: '5RB+', category: 'Minuman', discount: 21 },
+  { id: 3, name: 'Sania Beras Premium Pilihan 5 Kg', image: p3, price: 72900, old: 85000, sold: '8RB+', category: 'Sembako', discount: 14 },
+  { id: 4, name: 'Khong Guan Biskuit Kaleng Merah 650g', image: p4, price: 42900, old: 55000, sold: '3RB+', category: 'Makanan', discount: 22 },
+  { id: 5, name: 'Rinso Anti Noda + Molto Deterjen 750ml', image: p5, price: 21900, old: 29000, sold: '10RB+', category: 'Perawatan Rumah', discount: 24 },
+];
+const categories: [string, string][] = [ ['Semua Produk', '🛍️'], ['Sembako', '🌾'], ['Makanan', '🍜'], ['Minuman', '🥛'], ['Perawatan Rumah', '🧴'], ['Perawatan Diri', '🧼'], ['Ibu & Bayi', '🍼'], ['Kebutuhan Hewan', '🐾'] ];
+const promos = [ { eyebrow: 'BELANJA HARIAN, HEMAT MAKSIMAL', title: 'Kebutuhan harian\nharga paling hemat!', sub: 'Lengkapi isi rumah, tanpa keluar rumah', offer: 'DISKON S/D', value: '50%' }, { eyebrow: 'PROMO BELANJA SEMBAKO', title: 'Stok dapur lengkap,\nbelanja lebih hemat!', sub: 'Pilihan kebutuhan dapur favoritmu', offer: 'MULAI DARI', value: 'Rp14.900' }, { eyebrow: 'PILIHAN KEBUTUHAN RUMAH', title: 'Rumah bersih,\nhati pun senang!', sub: 'Temukan pilihan perawatan rumah', offer: 'DISKON S/D', value: '24%' } ];
+const money = (n: number) => `Rp${n.toLocaleString('id-ID')}`;
+type Product = typeof products[number];
+function Supermarket() {
+  const [slide, setSlide] = useState(0);
+  const [category, setCategory] = useState('Semua Produk');
+  const [search, setSearch] = useState('');
+  const [query, setQuery] = useState('');
+  const [sort, setSort] = useState('popular');
+  const [cart, setCart] = useState<Record<number, number>>({});
+  const [cartOpen, setCartOpen] = useState(false);
+  const [selected, setSelected] = useState<Product | null>(null);
+  const [notice, setNotice] = useState('');
+  const [saved, setSaved] = useState<string[]>([]);
+  const count = Object.values(cart).reduce((a, b) => a + b, 0);
+  const filtered = products.filter(p => (category === 'Semua Produk' || p.category === category) && p.name.toLowerCase().includes(query.toLowerCase())).sort((a,b) => sort === 'low' ? a.price-b.price : sort === 'high' ? b.price-a.price : a.id-b.id);
+  function add(p: Product) { setCart(c => ({ ...c, [p.id]: (c[p.id] || 0) + 1 })); setSelected(null); setNotice(`${p.name} ditambahkan ke keranjang demo.`); }
+  function change(id: number, delta: number) { setCart(c => ({...c, [id]: Math.max(0,(c[id] || 0) + delta)})); }
+  function browse(c: string) { setCategory(c); setQuery(''); setSearch(''); document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' }); }
+  const promo = promos[slide];
+  if (!promo) return null;
+  return <div className="shop-page">
+    <header className="shop-header">
+      <div className="shop-container topbar"><div className="topbar-left"><span>Seller Centre</span><i/><span>Mulai Berjualan</span><i/><span>Download</span><i/><span>Ikuti kami di</span><Facebook size={15}/><Instagram size={16}/></div><div className="topbar-right"><Button variant="shopGhost" onClick={() => setNotice('Belum ada notifikasi dalam pratinjau ini.')}><Bell/>Notifikasi</Button><Button variant="shopGhost" onClick={() => setNotice('Ini adalah pratinjau independen, bukan situs resmi Shopee.')}><ShieldCheck/>Bantuan</Button><span>Bahasa Indonesia <ChevronDown size={12}/></span><Button variant="shopGhost" onClick={() => setNotice('Pendaftaran dan login tidak tersedia dalam pratinjau ini.')}>Daftar</Button><i/><Button variant="shopGhost" onClick={() => setNotice('Login tidak tersedia dalam pratinjau ini.')}>Log In</Button></div></div>
+      <div className="shop-container main-header"><a href="/" className="shopee-logo"><ShoppingBag/><span>Shopee</span></a><div className="search-area"><form onSubmit={e => {e.preventDefault();setQuery(search);setCategory('Semua Produk');document.getElementById('products')?.scrollIntoView({behavior:'smooth'});}}><input aria-label="Cari produk" placeholder="Cari di Shopee Supermarket" value={search} onChange={e => setSearch(e.target.value)}/><Button variant="shop" type="submit" aria-label="Cari"><Search/></Button></form><div className="search-suggestions">Minyak Goreng <span>Beras 5kg</span><span>Susu UHT</span><span>Indomie</span><span>Deterjen</span><span>Kebutuhan Harian</span></div></div><Button variant="shopGhost" className="cart-button" aria-label="Buka keranjang" onClick={() => setCartOpen(true)}><ShoppingCart/>{count > 0 && <b>{count}</b>}</Button></div>
+    </header>
+    <div className="supermarket-nav"><div className="shop-container supermarket-nav-inner"><a href="/" className="supermarket-logo"><ShoppingBag/><div><strong>Shopee</strong><b>SUPERMARKET</b></div></a><nav><Button variant="shopGhost" className={category === 'Semua Produk' ? 'nav-active' : ''} onClick={() => browse('Semua Produk')}>Beranda</Button><Button variant="shopGhost" onClick={() => browse('Semua Produk')}>Semua Produk</Button><Button variant="shopGhost" onClick={() => document.getElementById('vouchers')?.scrollIntoView({behavior:'smooth'})}>Voucher & Promo</Button></nav><span className="official"><ShieldCheck size={18}/> 100% Produk Original</span></div></div>
+    <main className="shop-container shop-main">
+      <section className="promo-banner" aria-label="Promo supermarket"><img src={banner} width={1536} height={640} alt="Pilihan bahan makanan dan kebutuhan rumah tangga"/><div className="promo-copy"><div className="banner-brand"><ShoppingBag size={22}/> Shopee <b>SUPERMARKET</b></div><p className="eyebrow">{promo.eyebrow}</p><h1>{promo.title}</h1><p className="promo-sub">{promo.sub}</p><div className="promo-offer"><span>{promo.offer}</span><strong>{promo.value}</strong></div><Button variant="secondary" className="banner-cta" onClick={() => browse(slide === 1 ? 'Sembako' : slide === 2 ? 'Perawatan Rumah' : 'Semua Produk')}>BELANJA SEKARANG <ChevronRight/></Button></div><Button variant="shopGhost" className="banner-arrow prev" aria-label="Promo sebelumnya" onClick={() => setSlide((slide+2)%3)}><ChevronLeft/></Button><Button variant="shopGhost" className="banner-arrow next" aria-label="Promo berikutnya" onClick={() => setSlide((slide+1)%3)}><ChevronRight/></Button><div className="banner-dots">{promos.map((_,i) => <Button key={i} variant="shopGhost" className={i === slide ? 'dot selected' : 'dot'} aria-label={`Promo ${i+1}`} onClick={() => setSlide(i)}/>)}</div></section>
+      <section className="benefits"><div><Truck/><span><strong>GRATIS ONGKIR</strong><small>Belanja makin hemat</small></span></div><div><ShieldCheck/><span><strong>100% ORIGINAL</strong><small>Jaminan produk asli</small></span></div><div><Ticket/><span><strong>PROMO SETIAP HARI</strong><small>Harga terbaik untukmu</small></span></div><div><ShoppingBag/><span><strong>KEBUTUHAN LENGKAP</strong><small>Semua ada di sini</small></span></div></section>
+      <section id="vouchers" className="vouchers"><h2>VOUCHER SPESIAL UNTUKMU</h2><div className="voucher-grid">{[{title:'GRATIS ONGKIR',value:'GRATIS',sub:'Min. belanja Rp0',id:'ongkir'},{title:'VOUCHER BELANJA',value:'DISKON 10%',sub:'Min. belanja Rp100RB',id:'diskon'},{title:'CASHBACK SPESIAL',value:'CASHBACK 5%',sub:'Min. belanja Rp50RB',id:'cashback'}].map(v => <div className="voucher" key={v.id}><div className="voucher-stamp"><Ticket/><span>{v.title}</span></div><div className="voucher-info"><strong>{v.value}</strong><small>{v.sub}</small><span>Voucher demo</span></div><Button variant="shop" size="sm" disabled={saved.includes(v.id)} onClick={() => {setSaved([...saved,v.id]);setNotice('Voucher demo berhasil diklaim. Tidak berlaku untuk transaksi nyata.');}}>{saved.includes(v.id) ? <Check/> : 'Klaim'}</Button></div>)}</div></section>
+      <section className="category-section"><h2>BELANJA BERDASARKAN KATEGORI</h2><div className="category-grid">{categories.map(([name]) => <Button variant="shopGhost" key={name} className={`category-button ${category===name ? 'category-selected' : ''}`} onClick={() => browse(name)}><span className="category-icon">{name === 'Semua Produk' ? <ShoppingBag/> : name === 'Sembako' ? <img src={p3} alt=""/> : name === 'Makanan' ? <img src={p1} alt=""/> : name === 'Minuman' ? <img src={p2} alt=""/> : name === 'Perawatan Rumah' ? <img src={p5} alt=""/> : name === 'Perawatan Diri' ? <ShieldCheck/> : name === 'Ibu & Bayi' ? <img src={p2} alt=""/> : <ShoppingBag/>}</span><span>{name}</span></Button>)}</div></section>
+      <section className="flash-section"><div className="section-heading"><div><h2 className="flash-title">FLASH <span>ϟ</span> SALE</h2><span className="flash-note">Pilihan harga hemat</span></div><Button variant="shopGhost" onClick={() => browse('Semua Produk')}>Lihat Semua <ChevronRight/></Button></div><div className="flash-grid">{products.map(p => <Button variant="shopGhost" className="flash-product" key={p.id} onClick={() => setSelected(p)}><span className="discount-badge">-{p.discount}%</span><img src={p.image} width={512} height={512} loading="lazy" alt={p.name}/><strong>{money(p.price)}</strong><div className="sale-progress">TERJUAL {p.sold}</div></Button>)}</div></section>
+      <section className="product-section" id="products"><div className="section-heading"><h2>{query ? `HASIL PENCARIAN: ${query}` : category === 'Semua Produk' ? 'REKOMENDASI UNTUKMU' : category.toUpperCase()}</h2><span>Produk pilihan Shopee Supermarket</span></div><div className="product-filters"><span>Urutkan</span><Button variant={sort==='popular' ? 'shop' : 'secondary'} onClick={() => setSort('popular')}>Populer</Button><select aria-label="Urutkan harga" value={sort} onChange={e => setSort(e.target.value)}><option value="popular">Harga</option><option value="low">Harga: Rendah ke Tinggi</option><option value="high">Harga: Tinggi ke Rendah</option></select><span className="product-count">{filtered.length} produk</span></div>{filtered.length ? <div className="product-grid">{filtered.map(p => <Button variant="shopGhost" className="product-card" key={p.id} onClick={() => setSelected(p)}><div className="product-image"><span className="mall-badge">Mall</span><span className="discount-badge">-{p.discount}%</span><img src={p.image} width={512} height={512} loading="lazy" alt={p.name}/></div><div className="product-content"><h3>{p.name}</h3><span className="product-tag">Harga Terbaik</span><del>{money(p.old)}</del><div className="price-line"><strong>{money(p.price)}</strong><small>Terjual {p.sold}</small></div><span className="location"><MapPin size={11}/> Jakarta</span></div></Button>)}</div> : <div className="empty-state"><Search/><h3>Tidak ada produk yang ditemukan</h3><Button variant="shop" onClick={() => browse('Semua Produk')}>Lihat semua produk</Button></div>}</section>
+      <div className="more-row"><Button variant="outline" onClick={() => {browse('Semua Produk');setNotice('Semua produk contoh sudah ditampilkan.');}}>Lihat Semua Produk <ChevronRight/></Button></div>
+    </main>
+    <footer className="shop-footer"><div className="shop-container"><h2>Shopee Supermarket — Belanja Kebutuhan Sehari-hari</h2><p>Temukan pilihan bahan makanan, minuman, dan kebutuhan rumah tangga dalam satu tempat.</p><div className="footer-columns"><div><h3>LAYANAN PELANGGAN</h3><span>Pusat Bantuan</span><span>Metode Pembayaran</span><span>Pengiriman</span></div><div><h3>JELAJAHI SHOPEE</h3><span>Tentang Kami</span><span>Shopee Supermarket</span><span>Kebijakan Privasi</span></div><div><h3>KATEGORI PILIHAN</h3><span>Makanan & Minuman</span><span>Kebutuhan Rumah Tangga</span><span>Perawatan Diri</span></div><div><h3>IKUTI KAMI</h3><span><Facebook size={14}/> Facebook</span><span><Instagram size={14}/> Instagram</span></div></div><div className="footer-bottom"><span>Pratinjau independen · Tidak berafiliasi dengan Shopee</span><span>Indonesia</span></div></div></footer>
+    <Button variant="shop" className="chat-button" onClick={() => setNotice('Chat layanan pelanggan tidak tersedia dalam pratinjau ini.')}><MessageCircle/> Chat</Button>
+    {notice && <div className="shop-notice" role="status"><Check size={18}/><span>{notice}</span><Button variant="shopGhost" size="icon" aria-label="Tutup pemberitahuan" onClick={() => setNotice('')}><X/></Button></div>}
+    {(selected || cartOpen) && <div className="modal-backdrop" onClick={() => {setSelected(null);setCartOpen(false);}}><section className="shop-modal" role="dialog" aria-modal="true" aria-label={selected ? 'Detail produk' : 'Keranjang demo'} onClick={e => e.stopPropagation()}><Button variant="shopGhost" className="modal-close" size="icon" aria-label="Tutup" onClick={() => {setSelected(null);setCartOpen(false);}}><X/></Button>{selected ? <><img className="detail-image" src={selected.image} alt={selected.name}/><span className="detail-label">Shopee Supermarket · Produk contoh</span><h2>{selected.name}</h2><del>{money(selected.old)}</del><strong className="detail-price">{money(selected.price)}</strong><p>Gambar dan harga merupakan contoh untuk pratinjau. Tidak tersedia pembelian nyata.</p><Button variant="shop" onClick={() => add(selected)}><ShoppingCart/> Tambah ke Keranjang Demo</Button></> : <><h2>Keranjang Demo ({count})</h2>{count===0 ? <div className="empty-state"><ShoppingCart/><p>Keranjangmu masih kosong</p></div> : <>{products.filter(p => (cart[p.id] || 0)>0).map(p => <div className="cart-row" key={p.id}><img src={p.image} alt={p.name}/><div><h3>{p.name}</h3><strong>{money(p.price)}</strong><div className="quantity"><Button variant="outline" size="icon" aria-label={`Kurangi ${p.name}`} onClick={() => change(p.id,-1)}><Minus/></Button><span>{cart[p.id]}</span><Button variant="outline" size="icon" aria-label={`Tambah ${p.name}`} onClick={() => change(p.id,1)}><Plus/></Button></div></div></div>)}<div className="cart-total">Total <strong>{money(products.reduce((sum,p) => sum+p.price*(cart[p.id]||0),0))}</strong></div><p>Keranjang ini hanya untuk pratinjau. Pembayaran tidak tersedia.</p></>}</>}</section></div>}
+  </div>;
 }
