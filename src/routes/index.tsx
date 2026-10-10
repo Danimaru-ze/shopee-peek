@@ -27,7 +27,7 @@ const products = [
   { id: 4, name: 'Khong Guan Biskuit Kaleng Merah 650g', image: p4, price: 42900, old: 55000, sold: '3RB+', category: 'Makanan', discount: 22 },
   { id: 5, name: 'Rinso Anti Noda + Molto Deterjen 750ml', image: p5, price: 21900, old: 29000, sold: '10RB+', category: 'Perawatan Rumah', discount: 24 },
 ];
-const categories = [ ['Semua Produk', '🛍️'], ['Sembako', '🌾'], ['Makanan', '🍜'], ['Minuman', '🥛'], ['Perawatan Rumah', '🧴'], ['Perawatan Diri', '🧼'], ['Ibu & Bayi', '🍼'], ['Kebutuhan Hewan', '🐾'] ];
+const categories: [string, string][] = [ ['Semua Produk', '🛍️'], ['Sembako', '🌾'], ['Makanan', '🍜'], ['Minuman', '🥛'], ['Perawatan Rumah', '🧴'], ['Perawatan Diri', '🧼'], ['Ibu & Bayi', '🍼'], ['Kebutuhan Hewan', '🐾'] ];
 const promos = [ { eyebrow: 'BELANJA HARIAN, HEMAT MAKSIMAL', title: 'Kebutuhan harian\nharga paling hemat!', sub: 'Lengkapi isi rumah, tanpa keluar rumah', offer: 'DISKON S/D', value: '50%' }, { eyebrow: 'PROMO BELANJA SEMBAKO', title: 'Stok dapur lengkap,\nbelanja lebih hemat!', sub: 'Pilihan kebutuhan dapur favoritmu', offer: 'MULAI DARI', value: 'Rp14.900' }, { eyebrow: 'PILIHAN KEBUTUHAN RUMAH', title: 'Rumah bersih,\nhati pun senang!', sub: 'Temukan pilihan perawatan rumah', offer: 'DISKON S/D', value: '24%' } ];
 const money = (n: number) => `Rp${n.toLocaleString('id-ID')}`;
 type Product = typeof products[number];
@@ -48,6 +48,7 @@ function Supermarket() {
   function change(id: number, delta: number) { setCart(c => ({...c, [id]: Math.max(0,(c[id] || 0) + delta)})); }
   function browse(c: string) { setCategory(c); setQuery(''); setSearch(''); document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' }); }
   const promo = promos[slide];
+  if (!promo) return null;
   return <div className="shop-page">
     <header className="shop-header">
       <div className="shop-container topbar"><div className="topbar-left"><span>Seller Centre</span><i/><span>Mulai Berjualan</span><i/><span>Download</span><i/><span>Ikuti kami di</span><Facebook size={15}/><Instagram size={16}/></div><div className="topbar-right"><Button variant="shopGhost" onClick={() => setNotice('Belum ada notifikasi dalam pratinjau ini.')}><Bell/>Notifikasi</Button><Button variant="shopGhost" onClick={() => setNotice('Ini adalah pratinjau independen, bukan situs resmi Shopee.')}><ShieldCheck/>Bantuan</Button><span>Bahasa Indonesia <ChevronDown size={12}/></span><Button variant="shopGhost" onClick={() => setNotice('Pendaftaran dan login tidak tersedia dalam pratinjau ini.')}>Daftar</Button><i/><Button variant="shopGhost" onClick={() => setNotice('Login tidak tersedia dalam pratinjau ini.')}>Log In</Button></div></div>
