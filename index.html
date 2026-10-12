@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shopee Supermarket | Belanja Bahan Makanan &amp; Kebutuhan Rumah Tangga</title>
+  <meta name="description" content="Jelajahi kebutuhan harian, makanan, minuman, dan perlengkapan rumah tangga di Shopee Supermarket.">
+  <meta property="og:title" content="Shopee Supermarket — Kebutuhan Harian">
+  <meta property="og:description" content="Pilihan produk supermarket, promo, dan kebutuhan rumah tangga dalam satu tempat.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Inline SVG sprite (same stroke icon paths, no library) -->
+  <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true">
+    <defs>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></symbol>
+      <symbol id="i-cart" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></symbol>
+      <symbol id="i-chev-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+      <symbol id="i-chev-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+      <symbol id="i-chev-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+      <symbol id="i-bag" viewBox="0 0 24 24"><path d="M16 10a4 4 0 0 1-8 0"/><path d="M3.103 6.034h17.794"/><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+      <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
+      <symbol id="i-ig" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+      <symbol id="i-back" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></symbol>
+      <symbol id="i-filter" viewBox="0 0 24 24"><path d="M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z"/></symbol>
+      <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M22 3H2l8 9.5V19l4 2v-8.5L22 3z"/></symbol>
+      <symbol id="i-badge" viewBox="0 0 24 24"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></symbol>
+      <symbol id="i-thumb" viewBox="0 0 24 24"><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/><path d="M7 10v12"/></symbol>
+      <symbol id="i-tag" viewBox="0 0 24 24"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></symbol>
+      <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></symbol>
+      <symbol id="i-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol>
+      <symbol id="i-trolley" viewBox="0 0 24 24"><rect x="2" y="3.6" width="3.4" height="1.8" rx="0.9" fill="currentColor" stroke="none"/><path d="M4.8 5.2l3 9.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M5.5 8h15.5l-2.6 7.1a1.6 1.6 0 0 1-1.5 1.1H8.6a1.6 1.6 0 0 1-1.6-1.3L5.5 8z" fill="currentColor" stroke="none"/><path d="M10 9.8v4.4M12.5 9.8v4.4M15 9.8v4.4" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/><circle cx="9.5" cy="19" r="1.7" fill="currentColor" stroke="none"/><circle cx="17" cy="19" r="1.7" fill="currentColor" stroke="none"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="shop-page">
+    <header class="mobile-shop-header">
+      <div class="mobile-title-row">
+        <button type="button" class="btn btn-shop-ghost btn-icon" id="mobileBack" aria-label="Kembali ke rekomendasi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-back"/></svg></button>
+        <div class="mobile-store-name">Shopee Supermarket</div>
+        <button type="button" class="btn btn-shop-ghost follow-button" id="followBtn">Ikuti</button>
+        <button type="button" class="btn btn-shop-ghost btn-icon mobile-cart" id="mobileCartBtn" aria-label="Buka keranjang mobile"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-cart"/></svg><b id="mobileCartCount" hidden></b></button>
+      </div>
+      <div class="mobile-search-row">
+        <form id="mobileSearchForm"><button type="submit" class="btn btn-shop-ghost btn-icon" aria-label="Cari produk mobile"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-search"/></svg></button><input id="mobileSearchInput" aria-label="Cari di Shopee Supermarket" placeholder="Cari di Shopee Supermarket" value=""></form>
+        <button type="button" class="btn btn-shop-ghost btn-icon" id="filterToggle" aria-label="Filter kategori"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-funnel"/></svg></button>
+      </div>
+    </header>
+
+    <header class="shop-header">
+      <div class="shop-container topbar">
+        <div class="topbar-left"><span>Seller Centre</span><i aria-hidden="true"></i><span>Mulai Berjualan</span><i aria-hidden="true"></i><span>Download</span><i aria-hidden="true"></i><span>Ikuti kami di</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-fb"/></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-ig"/></svg></div>
+        <div class="topbar-right">
+          <button type="button" class="btn btn-shop-ghost"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-bell"/></svg>Notifikasi</button>
+          <button type="button" class="btn btn-shop-ghost"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-shield"/></svg>Bantuan</button>
+          <span>Bahasa Indonesia <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev-down"/></svg></span>
+          <button type="button" class="btn btn-shop-ghost">Daftar</button><i aria-hidden="true"></i><button type="button" class="btn btn-shop-ghost">Log In</button>
+        </div>
+      </div>
+      <div class="shop-container main-header">
+        <a href="/" class="shopee-logo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-bag"/></svg><span>Shopee</span></a>
+        <div class="search-area">
+          <form id="desktopSearchForm"><input id="desktopSearchInput" aria-label="Cari produk" placeholder="Cari di Shopee Supermarket" value=""><button type="submit" class="btn btn-shop" aria-label="Cari"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-search"/></svg></button></form>
+          <div class="search-suggestions">Minyak Goreng <span>Beras 5kg</span><span>Susu UHT</span><span>Indomie</span><span>Deterjen</span><span>Kebutuhan Harian</span></div>
+        </div>
+        <button type="button" class="btn btn-shop-ghost cart-button" id="desktopCartBtn" aria-label="Buka keranjang"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-cart"/></svg><b id="desktopCartCount" hidden></b></button>
+      </div>
+    </header>
+
+    <div class="supermarket-nav">
+      <div class="shop-container supermarket-nav-inner">
+        <a href="/" class="supermarket-logo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-trolley"/></svg><div><strong>Shopee</strong><b>SUPERMARKET</b></div></a>
+        <nav>
+          <button type="button" class="btn btn-shop-ghost nav-active" data-browse="Semua Produk">Beranda</button>
+          <button type="button" class="btn btn-shop-ghost" data-browse="Semua Produk">Semua Produk</button>
+          <button type="button" class="btn btn-shop-ghost" data-scroll="vouchers">Voucher &amp; Promo</button>
+        </nav>
+        <span class="official"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-shield"/></svg> 100% Produk Original</span>
+      </div>
+    </div>
+
+    <main class="shop-container shop-main">
+      <div id="homeView">
+      <section class="promo-banner" id="promoBanner" aria-label="Promo supermarket">
+        <h1 class="sr-only">Shopee Supermarket</h1>
+        <img id="bannerImg" src="assets/banners/blue-supermarket-banner.jpg" width="1536" height="640" alt="Shopee Supermarket — Gratis Ongkir Xtra, Diskon s.d. 40%">
+        <button type="button" class="btn btn-shop-ghost banner-arrow prev" id="bannerPrev" aria-label="Promo sebelumnya"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev-left"/></svg></button>
+        <button type="button" class="btn btn-shop-ghost banner-arrow next" id="bannerNext" aria-label="Promo berikutnya"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev-right"/></svg></button>
+        <div class="banner-dots" id="bannerDots"></div>
+      </section>
+
+      <section class="benefits">
+        <div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-badge"/></svg><span>100% Ori</span></div>
+        <div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-shield"/></svg><span>Dikelola Shopee</span></div>
+        <div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-bag"/></svg><span>700+ Brands</span></div>
+      </section>
+
+      <section id="vouchers" class="vouchers">
+        <h2>VOUCHER</h2>
+        <div class="voucher-grid" id="voucherGrid"></div>
+      </section>
+
+      <section class="flash-section" id="flash">
+        <div class="flash-head">
+          <h2 class="flash-title">Supermarket <span class="flash-bolt">ϟ</span> <em>FLASH SALE</em></h2>
+          <button type="button" class="btn btn-shop-ghost flash-more" data-browse="Semua Produk">Lihat Lainnya <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev-right"/></svg></button>
+        </div>
+        <div class="flash-timer"><strong id="flashTimer">00:00:00</strong><span>Besok</span></div>
+        <div class="flash-strip" id="flashStrip"></div>
+      </section>
+
+      <section class="promo-sec" id="promo-kulit">
+        <div class="promo-bar"><div><strong>KULIT SEHAT</strong><b>HARGA BERSAHABAT</b></div><button type="button" class="promo-all" data-plink="Perawatan Diri">LIHAT SEMUA <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev-right"/></svg></button></div>
+        <div class="promo-strip" id="strip-promo-kulit"></div>
+      </section>
+
+      <section class="promo-sec" id="promo-tua">
+        <div class="promo-bar"><div><strong>PROMO TANGGAL TUA</strong><b>DISKON S.D. 50%</b></div><button type="button" class="promo-all" data-plink="Semua Produk">LIHAT SEMUA <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev-right"/></svg></button></div>
+        <div class="promo-strip" id="strip-promo-tua"></div>
+      </section>
+
+      <section class="promo-sec" id="promo-kecil">
+        <div class="promo-bar"><div><strong>KEBUTUHAN SI KECIL</strong><b>DISKON S.D. 20%</b></div><button type="button" class="promo-all" data-plink="Ibu &amp; Bayi">LIHAT SEMUA <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev-right"/></svg></button></div>
+        <div class="promo-strip" id="strip-promo-kecil"></div>
+      </section>
+
+      <section class="product-section" id="products">
+        <div class="section-heading"><h2 id="productTitle">Rekomendasi</h2><span>Produk pilihan Shopee Supermarket</span></div>
+        <div class="product-filters">
+          <span>Urutkan</span>
+          <button type="button" class="btn btn-shop" id="sortPopular">Populer</button>
+          <select id="sortSelect" aria-label="Urutkan harga">
+            <option value="popular">Harga</option>
+            <option value="low">Harga: Rendah ke Tinggi</option>
+            <option value="high">Harga: Tinggi ke Rendah</option>
+            <option value="sold">Terlaris</option>
+            <option value="new">Terbaru</option>
+          </select>
+          <span class="product-count" id="productCount">22 produk</span>
+        </div>
+        <div class="product-grid" id="productGrid"></div>
+        <div class="empty-state" id="emptyState" hidden>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-search"/></svg>
+          <h3>Tidak ada produk yang ditemukan</h3>
+          <button type="button" class="btn btn-shop" data-browse="Semua Produk">Lihat semua produk</button>
+        </div>
+        <div class="loading-more" id="loading" role="status" hidden><span class="spinner" aria-hidden="true"></span><span>Memuat...</span></div>
+        <div id="sentinel" aria-hidden="true"></div>
+      </section>
+      </div>
+      <div id="promoPage" hidden>
+        <section class="promo-sec" id="pp-nivea">
+          <div class="promo-bar single"><div><strong>Nivea Kulit Lembap &amp; Ternutrisi Hingga 72 Jam</strong></div><button type="button" class="promo-all" data-plink="Perawatan Diri">LIHAT SEMUA <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev-right"/></svg></button></div>
+          <div class="promo-strip" id="strip-pp-nivea"></div>
+        </section>
+        <section class="promo-sec" id="pp-unic">
+          <div class="promo-bar single"><div><strong>Unicharm Diskon s.d. 40%</strong></div><button type="button" class="promo-all" data-plink="Ibu &amp; Bayi">LIHAT SEMUA <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev-right"/></svg></button></div>
+          <div class="promo-strip" id="strip-pp-unic"></div>
+        </section>
+        <section class="promo-sec" id="pp-murah">
+          <div class="promo-bar single"><div><strong>Promo Spesial Minggu Ini Di Bawah 50 Ribu</strong></div><button type="button" class="promo-all" data-plink="Semua Produk">LIHAT SEMUA <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev-right"/></svg></button></div>
+          <div class="promo-strip" id="strip-pp-murah"></div>
+        </section>
+      </div>
+      <div id="kategoriPage" hidden>
+        <div class="cat-head">
+          <button type="button" class="btn btn-shop-ghost btn-icon" id="catBack" aria-label="Kembali"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-back"/></svg></button>
+          <h2>Kategori</h2>
+        </div>
+        <div class="kat-wrap">
+          <div class="kat-rail" id="catRail"></div>
+          <div class="kat-panel" id="catPanel"></div>
+        </div>
+      </div>
+      <div id="semuaPage" hidden>
+        <div class="all-tools"><button type="button" class="filter-btn" id="filterBtn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-funnel"/></svg>Filter</button></div>
+        <div class="sort-tabs" id="sortTabs">
+          <button type="button" data-sortmode="rel" class="active">Terkait</button>
+          <button type="button" data-sortmode="disc">Diskon</button>
+          <button type="button" data-sortmode="sold">Terlaris</button>
+          <button type="button" data-sortmode="price">Harga <span id="priceArrow">↕</span></button>
+        </div>
+        <div class="product-grid" id="allGrid"></div>
+        <div class="loading-more" id="allLoading" role="status" hidden><span class="spinner" aria-hidden="true"></span><span>Memuat...</span></div>
+        <div id="sentinelAll" aria-hidden="true"></div>
+      </div>
+    </main>
+
+    <nav class="mobile-bottom-nav" aria-label="Navigasi supermarket" id="bottomNav"></nav>
+
+    <button type="button" class="to-top" id="toTop" aria-label="Kembali ke atas"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-up"/></svg></button>
+
+    <div class="modal-backdrop" id="modalBackdrop" hidden>
+      <section class="shop-modal" role="dialog" aria-modal="true" aria-label="Dialog supermarket" id="modalBox">
+        <button type="button" class="btn btn-shop-ghost btn-icon modal-close" id="modalClose" aria-label="Tutup"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-x"/></svg></button>
+        <div id="modalContent"></div>
+      </section>
+    </div>
+
+    <div class="modal-backdrop" id="filterSheet" hidden>
+      <section class="filter-sheet" role="dialog" aria-modal="true" aria-label="Filter produk">
+        <div class="filter-head"><h2>Filter</h2><button type="button" class="btn btn-shop-ghost btn-icon" id="filterClose" aria-label="Tutup filter"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-x"/></svg></button></div>
+        <div class="filter-sec"><h3>Urutkan</h3>
+          <button type="button" class="filter-opt selected"><span>Terkait</span></button>
+          <button type="button" class="filter-opt"><span>Terbaru</span></button>
+          <button type="button" class="filter-opt"><span>Terlaris</span></button>
+          <button type="button" class="filter-opt"><span>Harga Terendah</span></button>
+          <button type="button" class="filter-opt"><span>Harga Tertinggi</span></button>
+        </div>
+        <div class="filter-sec"><h3>Kategori</h3>
+          <div class="filter-chips">
+            <button type="button" class="filter-chip">Semua Produk</button>
+            <button type="button" class="filter-chip">Sembako</button>
+            <button type="button" class="filter-chip">Makanan</button>
+            <button type="button" class="filter-chip">Minuman</button>
+            <button type="button" class="filter-chip">Perawatan Diri</button>
+            <button type="button" class="filter-chip">Ibu &amp; Bayi</button>
+          </div>
+        </div>
+        <div class="filter-foot"><button type="button" class="btn btn-outline" id="filterReset">Reset</button><button type="button" class="btn btn-shop" id="filterApply">Terapkan</button></div>
+      </section>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
