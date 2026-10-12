@@ -11,3 +11,4 @@
 
 - Keep the supermarket experience in the index route with browser-only demo state; the requested scope is a frontend preview, not a functioning commerce service.
 - Define all supermarket visual roles in src/styles.css and use the shared Button for controls; this keeps the reference styling consistent.
+- Use distinct mobile header and fixed bottom navigation below the tablet breakpoint, with the same shared shopping state and content as desktop; this preserves the app-style mobile reference without duplicating commerce logic.
