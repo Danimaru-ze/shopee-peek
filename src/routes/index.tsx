@@ -5,6 +5,12 @@ import { Button } from '@/components/ui/button';
 import banner from '@/assets/blue-supermarket-banner.jpg';
 import olay from '@/assets/olay-offer.jpg';
 import downy from '@/assets/downy-offer.jpg';
+import c0 from '@/assets/category-body-lotion.jpg';
+import c1 from '@/assets/category-mouthwash.jpg';
+import c2 from '@/assets/category-face-care.jpg';
+import c3 from '@/assets/category-feminine-care.jpg';
+import c4 from '@/assets/category-breakfast.jpg';
+import c5 from '@/assets/category-dish-soap.jpg';
 import p0 from '@/assets/product-0.jpg';
 import p1 from '@/assets/product-1.jpg';
 import p2 from '@/assets/product-2.jpg';
@@ -31,10 +37,10 @@ const products = [
 ];
 const categories = [
  {name:'Bahan Pokok & Bumbu Dapur', filter:'Sembako', image:p0}, {name:'Makanan Ringan',filter:'Makanan',image:p4},
- {name:'Kebersihan Rumah',filter:'Perawatan Rumah',image:p5}, {name:'Perawatan Tubuh',filter:'Perawatan Diri',image:p5},
+ {name:'Kebersihan Rumah',filter:'Perawatan Rumah',image:c5}, {name:'Perawatan Tubuh',filter:'Perawatan Diri',image:c0},
  {name:'Minuman',filter:'Minuman',image:p2}, {name:'Makanan Instan',filter:'Makanan',image:p1},
- {name:'Perawatan Gigi & Mulut',filter:'Perawatan Diri',image:p5}, {name:'Perawatan Wajah',filter:'Perawatan Diri',image:p2},
- {name:'Produk Kewanitaan',filter:'Perawatan Diri',image:p5}, {name:'Menu Sarapan',filter:'Makanan',image:p4},
+ {name:'Perawatan Gigi & Mulut',filter:'Perawatan Diri',image:c1}, {name:'Perawatan Wajah',filter:'Perawatan Diri',image:c2},
+ {name:'Produk Kewanitaan',filter:'Perawatan Diri',image:c3}, {name:'Menu Sarapan',filter:'Makanan',image:c4},
  {name:'Ibu & Bayi',filter:'Ibu & Bayi',image:p2}, {name:'Kebutuhan Hewan',filter:'Kebutuhan Hewan',image:p3},
 ];
 const money = (n: number) => `Rp${n.toLocaleString('id-ID')}`;
